@@ -1,32 +1,38 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Song, Album as AlbumMode } from "../../shared/models";
-import { getSongs } from "../../services/api-service";
+import { Song, Album as AlbumMode, Artist } from "../../shared/models";
+import { getSongs, suggestedSong } from "../../services/api-service";
 import { useParams, useLocation } from "react-router-dom";
 import { Player } from "../Player";
 import { Loader } from "../../shared/components";
 import "./Album.scss";
 import { secondsFormat } from "../../shared/utils/utils";
+import { SuggestedSong } from "./components";
+
+interface Ownership {
+  album: AlbumMode;
+  artist: Artist;
+}
 
 export const Album: React.FC = () => {
   const { id } = useParams();
   const location = useLocation();
-  const album = location.state as AlbumMode;
+  const { album, artist } = location.state as Ownership;
   const [songs, setSongs] = useState<Song[]>([]);
   const [selectedSong, setSelectedSong] = useState<Song>({} as Song);
+  const [suggestedSongs, setSuggestedSong] = useState<Song[]>({} as Song[]);
   const componentIsMounted = useRef<boolean>(true);
 
   useEffect(() => {
-    getSongs(id)
-      .then((response) => {
-        if (componentIsMounted.current) {
-          setSongs(response);
-        }
-      })
-      .catch((error) => console.log(error));
+    Promise.all([getSongs(id), suggestedSong(artist.id)]).then((values) => {
+      if (componentIsMounted.current) {
+        setSongs(values[0]);
+        setSuggestedSong(values[1]);
+      }
+    });
     return () => {
       componentIsMounted.current = false;
     };
-  }, [songs, id]);
+  }, [songs, id, artist]);
 
   const playSong = (song: Song): void => {
     setSelectedSong(song);
@@ -57,7 +63,7 @@ export const Album: React.FC = () => {
             {songs.map((song, index) => {
               return (
                 <div
-                  className="row no-gutters p-3"
+                  className="row no-gutters p-3 pointer"
                   onClick={() => {
                     playSong(song);
                   }}
@@ -87,6 +93,9 @@ export const Album: React.FC = () => {
               );
             })}
           </div>
+          {suggestedSongs && suggestedSongs.length && (
+            <SuggestedSong songs={suggestedSongs} playSong={playSong} />
+          )}
         </div>
       ) : (
         <Loader />

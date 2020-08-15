@@ -6,7 +6,6 @@ import { StarFillIcon, TriangleRightIcon } from "@primer/octicons-react";
 import { Loader } from "../../shared/components";
 import "./Artist.scss";
 
-
 export const Artist: React.FC = () => {
   const { id } = useParams();
   const history = useHistory();
@@ -67,7 +66,7 @@ export const Artist: React.FC = () => {
                     <button
                       className="btn btn-link float-right text-white"
                       onClick={() =>
-                        history.push(`/album/${album.id}`, album)
+                        history.push(`/album/${album.id}`, {album: album, artist: artist})
                       }
                     >
                       <TriangleRightIcon size={30} />

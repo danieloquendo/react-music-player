@@ -4,8 +4,8 @@ export interface Artist {
   image: string;
   genres: string[];
   popularity: string;
-  spotifyUrl: string;
-  spotifyId: string;
-  createdAt: string;
-  updatedAt: string;
+  spotify_url: string;
+  spotify_id: string;
+  created_at: string;
+  updated_at: string;
 }
