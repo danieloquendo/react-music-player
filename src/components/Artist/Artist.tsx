@@ -43,6 +43,7 @@ export const Artist: React.FC = () => {
         </h3>
       </div>
       <div className="container">
+        <h4 className="text-white font-weight-bold">Álbumes</h4>
         {albums.map((album) => {
           return (
             <div className="row no-gutters p-3" key={album.id}>

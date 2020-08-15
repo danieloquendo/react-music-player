@@ -4,9 +4,9 @@ import { getSongs, suggestedSong } from "../../services/api-service";
 import { useParams, useLocation } from "react-router-dom";
 import { Player } from "../Player";
 import { Loader } from "../../shared/components";
-import "./Album.scss";
 import { secondsFormat } from "../../shared/utils/utils";
 import { SuggestedSong } from "./components";
+import "./Album.scss";
 
 interface Ownership {
   album: AlbumMode;
@@ -59,7 +59,7 @@ export const Album: React.FC = () => {
             </div>
           </div>
           <div className="container-fluid">
-            <h3 className="p-3 text-white">Canciones</h3>
+            <h4 className="p-3 text-white font-weight-bold">Canciones</h4>
             {songs.map((song, index) => {
               return (
                 <div

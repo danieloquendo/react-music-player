@@ -12,7 +12,9 @@ export const SuggestedSong: React.FC<Suggested> = (props) => {
     <Fragment>
       {props.songs && props.songs.length && (
         <div className="container-fluid">
-          <h3 className="p-3 text-white">Sugerencia</h3>
+          <h4 className="p-3 text-white suggested-title font-weight-bold">
+            Sugerencia
+          </h4>
           {props.songs.map((song, index) => {
             return (
               <div
@@ -20,18 +22,18 @@ export const SuggestedSong: React.FC<Suggested> = (props) => {
                 onClick={() => {
                   props.playSong(song);
                 }}
-                key={song.id}
+                key={song.name}
               >
                 <div className="col-md-12 list-border text-white">
                   <div className="row">
                     <div className="col-md-10">
-                      <h6 className="p-0">
+                      <h6 className="p-0 song-name">
                         {index + 1} <span className="item-p">{song.name}</span>
                       </h6>
                     </div>
                     <div className="col-md-2">
                       {!song.preview_url && (
-                        <span className="badge badge-warning">
+                        <span className="badge badge-warning file-not-found">
                           No Encontrado
                         </span>
                       )}
