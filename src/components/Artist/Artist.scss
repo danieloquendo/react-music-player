@@ -1,0 +1,28 @@
+.artist {
+  .header {
+    background-image: linear-gradient(#303030, #000000);
+  }
+
+  .image-size {
+    height: 200px;
+    width: 200px;
+  }
+
+  .popularity {
+    font-size: 12px;
+    position: absolute;
+    padding: 10px;
+    padding-left: 2px;
+  }
+  .star {
+    color: yellow;
+  }
+
+  .list-border {
+    border-bottom: 1px solid hsla(0, 0%, 100%, 0.1);
+  }
+
+  .sub-title {
+    font-size: 12px;
+  }
+}

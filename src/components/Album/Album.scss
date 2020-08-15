@@ -1,0 +1,21 @@
+@import "../../App.scss";
+
+$bodyColor: #000000 !default;
+
+.album {
+  .header-d {
+    background-color: #1d1d1d;
+  }
+
+  .image-k {
+    height: 200px;
+  }
+
+  .list-border {
+    border-bottom: 1px solid hsla(0, 0%, 100%, 0.1);
+  }
+
+  .item-p {
+    margin-left: 20px;
+  }
+}
