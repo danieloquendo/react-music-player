@@ -13,8 +13,13 @@ interface Ownership {
   artist: Artist;
 }
 
+interface AlbumParams {
+  id: string;
+};
+
 export const Album: React.FC = () => {
-  const { id } = useParams();
+  const params = useParams<AlbumParams>();
+  const id = Number(params?.id);
   const location = useLocation();
   const { album, artist } = location.state as Ownership;
   const [songs, setSongs] = useState<Song[]>([]);

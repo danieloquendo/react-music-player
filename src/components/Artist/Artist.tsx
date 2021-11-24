@@ -6,8 +6,13 @@ import { StarFillIcon, TriangleRightIcon } from "@primer/octicons-react";
 import { Loader } from "../../shared/components";
 import "./Artist.scss";
 
+interface ArtistParams {
+  id: string;
+};
+
 export const Artist: React.FC = () => {
-  const { id } = useParams();
+  const params = useParams<ArtistParams>();
+  const id = Number(params?.id);
   const history = useHistory();
   const [albums, setAlbums] = useState<Album[]>([]);
   const [artist, setArtist] = useState<ArtistModel>({} as ArtistModel);
